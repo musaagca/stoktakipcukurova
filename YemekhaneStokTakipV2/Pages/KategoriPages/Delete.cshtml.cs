@@ -45,10 +45,21 @@ public class DeleteModel : PageModel
 
         var kategori = await _context.Kategoriler.FindAsync(id);
 
-        if (kategori != null)
+        if (kategori == null)
+        {
+            return NotFound();
+        }
+
+        try
         {
             _context.Kategoriler.Remove(kategori);
             await _context.SaveChangesAsync();
+
+            TempData["Basari"] = "Kategori başarıyla silindi.";
+        }
+        catch (DbUpdateException)
+        {
+            TempData["Hata"] = "❌ Bu kategoriye bağlı ürünler bulunduğu için silinemez.";
         }
 
         return RedirectToPage("./Index");

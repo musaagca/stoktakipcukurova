@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using YemekhaneStokTakipV2.Models;
 using YemekhaneStokTakipV2.Data;
@@ -15,19 +16,20 @@ public class CreateModel : PageModel
         _context = context;
     }
 
-    public IActionResult OnGet()
-    {
-        return Page();
-    }
-
     [BindProperty]
     public Urun Urun { get; set; } = default!;
 
-    // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD.
+    public IActionResult OnGet()
+    {
+        ViewData["KategoriId"] = new SelectList(_context.Kategoriler, "KategoriId", "KategoriAdi");
+        return Page();
+    }
+
     public async Task<IActionResult> OnPostAsync()
     {
         if (!ModelState.IsValid)
         {
+            ViewData["KategoriId"] = new SelectList(_context.Kategoriler, "KategoriId", "KategoriAdi");
             return Page();
         }
 
