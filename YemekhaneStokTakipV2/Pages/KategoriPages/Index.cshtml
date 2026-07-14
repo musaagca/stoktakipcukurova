@@ -1,0 +1,36 @@
+@page
+@model YemekhaneStokTakipV2.Pages.KategoriPages.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Kategori[0].KategoriAdi)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Kategori) {
+        <tr>
+            <td>
+                @Html.DisplayFor(model => item.KategoriAdi)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.KategoriId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.KategoriId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.KategoriId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

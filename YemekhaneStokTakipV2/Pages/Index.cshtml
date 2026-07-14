@@ -1,0 +1,76 @@
+﻿@page
+@model YemekhaneStokTakipV2.Pages.IndexModel
+
+@{
+    ViewData["Title"] = "Ana Sayfa";
+}
+
+<div class="text-center mb-5">
+    <h1 class="display-4 fw-bold text-success">🍽️ Yemekhane Stok Takip Sistemi</h1>
+    <p class="lead">Yemekhane stok işlemlerini kolayca yönetin.</p>
+</div>
+
+<div class="row g-4">
+
+    <div class="col-md-4">
+        <div class="card shadow text-center">
+            <div class="card-body">
+                <h3>📦 Ürünler</h3>
+                <h2 class="text-success">@Model.ToplamUrun</h2>
+                <p>Toplam ürün sayısı</p>
+                <a asp-page="/UrunPages/Index" class="btn btn-success">Ürünlere Git</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card shadow text-center">
+            <div class="card-body">
+                <h3>🗂️ Kategoriler</h3>
+                <h2 class="text-primary">@Model.ToplamKategori</h2>
+                <p>Toplam kategori</p>
+                <a asp-page="/KategoriPages/Index" class="btn btn-primary">Kategorilere Git</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card shadow text-center">
+            <div class="card-body">
+                <h3>🚚 Tedarikçiler</h3>
+                <h2 class="text-warning">@Model.ToplamTedarikci</h2>
+                <p>Toplam tedarikçi</p>
+                <a asp-page="/TedarikciPages/Index" class="btn btn-warning">Tedarikçilere Git</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<br />
+
+<div class="row g-4">
+
+    <div class="col-md-6">
+        <div class="card shadow text-center">
+            <div class="card-body">
+                <h3>📥 Stok Girişi</h3>
+                <h2 class="text-info">@Model.ToplamStokGiris</h2>
+                <p>Toplam stok girişi</p>
+                <a asp-page="/StokGirisPages/Index" class="btn btn-info">Stok Girişi</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card shadow text-center">
+            <div class="card-body">
+                <h3>📤 Stok Çıkışı</h3>
+                <h2 class="text-danger">@Model.ToplamStokCikis</h2>
+                <p>Toplam stok çıkışı</p>
+                <a asp-page="/StokCikisPages/Index" class="btn btn-danger">Stok Çıkışı</a>
+            </div>
+        </div>
+    </div>
+
+</div>

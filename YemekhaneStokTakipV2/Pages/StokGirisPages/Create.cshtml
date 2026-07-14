@@ -1,0 +1,74 @@
+@page
+@model YemekhaneStokTakipV2.Pages.StokGirisPages.CreateModel
+
+@{
+    ViewData["Title"] = "Yeni Stok Girişi";
+}
+
+<h1>📥 Yeni Stok Girişi</h1>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+
+        <form method="post">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="mb-3">
+                <label asp-for="StokGiris.UrunId" class="form-label">Ürün</label>
+                <select asp-for="StokGiris.UrunId"
+                        asp-items="Model.UrunListesi"
+                        class="form-select">
+                    <option value="">Ürün Seçiniz</option>
+                </select>
+                <span asp-validation-for="StokGiris.UrunId" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="StokGiris.TedarikciId" class="form-label">Tedarikçi</label>
+                <select asp-for="StokGiris.TedarikciId"
+                        asp-items="Model.TedarikciListesi"
+                        class="form-select">
+                    <option value="">Tedarikçi Seçiniz</option>
+                </select>
+                <span asp-validation-for="StokGiris.TedarikciId" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="StokGiris.Miktar" class="form-label"></label>
+                <input asp-for="StokGiris.Miktar" class="form-control" />
+                <span asp-validation-for="StokGiris.Miktar" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="StokGiris.Tarih" class="form-label"></label>
+                <input asp-for="StokGiris.Tarih" class="form-control" type="datetime-local" />
+                <span asp-validation-for="StokGiris.Tarih" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="StokGiris.Aciklama" class="form-label"></label>
+                <textarea asp-for="StokGiris.Aciklama" class="form-control"></textarea>
+                <span asp-validation-for="StokGiris.Aciklama" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-success">
+                Kaydet
+            </button>
+
+            <a asp-page="./Index" class="btn btn-secondary">
+                Geri Dön
+            </a>
+
+        </form>
+
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

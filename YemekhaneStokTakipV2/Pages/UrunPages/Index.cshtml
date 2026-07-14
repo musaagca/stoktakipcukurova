@@ -1,0 +1,66 @@
+@page
+@model YemekhaneStokTakipV2.Pages.UrunPages.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Urun[0].UrunAdi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Urun[0].KategoriId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Urun[0].Birim)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Urun[0].MevcutStok)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Urun[0].KritikStok)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Urun[0].Kategori)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Urun) {
+        <tr>
+            <td>
+                @Html.DisplayFor(model => item.UrunAdi)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.KategoriId)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Birim)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.MevcutStok)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.KritikStok)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Kategori)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.UrunId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.UrunId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.UrunId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

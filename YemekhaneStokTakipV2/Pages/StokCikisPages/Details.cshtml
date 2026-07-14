@@ -1,0 +1,49 @@
+@page
+@model YemekhaneStokTakipV2.Pages.StokCikisPages.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>StokCikis</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.StokCikis.UrunId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.StokCikis.UrunId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.StokCikis.Miktar)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.StokCikis.Miktar)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.StokCikis.Tarih)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.StokCikis.Tarih)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.StokCikis.Aciklama)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.StokCikis.Aciklama)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.StokCikis.Urun)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.StokCikis.Urun)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.StokCikis.StokCikisId">Edit</a>
+    <a asp-page="./Index">Back to List</a>
+</div>

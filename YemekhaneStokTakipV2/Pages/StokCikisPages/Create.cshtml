@@ -1,0 +1,65 @@
+@page
+@model YemekhaneStokTakipV2.Pages.StokCikisPages.CreateModel
+
+@{
+    ViewData["Title"] = "Yeni Stok Çıkışı";
+}
+
+<h1>📤 Yeni Stok Çıkışı</h1>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+
+        <form method="post">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="mb-3">
+                <label asp-for="StokCikis.UrunId" class="form-label">Ürün</label>
+                <select asp-for="StokCikis.UrunId"
+                        asp-items="Model.UrunListesi"
+                        class="form-select">
+                    <option value="">Ürün Seçiniz</option>
+                </select>
+                <span asp-validation-for="StokCikis.UrunId" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="StokCikis.Miktar" class="form-label"></label>
+                <input asp-for="StokCikis.Miktar" class="form-control" />
+                <span asp-validation-for="StokCikis.Miktar" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="StokCikis.Tarih" class="form-label"></label>
+                <input asp-for="StokCikis.Tarih" type="datetime-local" class="form-control" />
+                <span asp-validation-for="StokCikis.Tarih" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="StokCikis.Aciklama" class="form-label"></label>
+                <textarea asp-for="StokCikis.Aciklama" class="form-control"></textarea>
+                <span asp-validation-for="StokCikis.Aciklama" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-danger">
+                Stok Çıkışı Yap
+            </button>
+
+            <a asp-page="./Index" class="btn btn-secondary">
+                Geri Dön
+            </a>
+
+        </form>
+
+    </div>
+</div>
+
+@section Scripts
+{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

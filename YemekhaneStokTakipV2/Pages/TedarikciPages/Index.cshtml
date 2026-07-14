@@ -1,0 +1,48 @@
+@page
+@model YemekhaneStokTakipV2.Pages.TedarikciPages.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Tedarikci[0].FirmaAdi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tedarikci[0].Telefon)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tedarikci[0].Adres)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Tedarikci) {
+        <tr>
+            <td>
+                @Html.DisplayFor(model => item.FirmaAdi)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Telefon)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Adres)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.TedarikciId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.TedarikciId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.TedarikciId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
