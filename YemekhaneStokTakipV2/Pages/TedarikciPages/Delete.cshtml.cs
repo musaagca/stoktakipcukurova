@@ -18,38 +18,37 @@ public class DeleteModel : PageModel
     [BindProperty]
     public Tedarikci Tedarikci { get; set; } = default!;
 
-    public async Task<IActionResult> OnGetAsync(int? tedarikciid)
+    public async Task<IActionResult> OnGetAsync(int? id)
     {
-        if (tedarikciid is null)
+        if (id == null)
         {
             return NotFound();
         }
 
-        var tedarikci = await _context.Tedarikciler.FirstOrDefaultAsync(m => m.TedarikciId == tedarikciid);
-        if (tedarikci is null)
+        var tedarikci = await _context.Tedarikciler
+            .FirstOrDefaultAsync(m => m.TedarikciId == id);
+
+        if (tedarikci == null)
         {
             return NotFound();
         }
-        else
-        {
-            Tedarikci = tedarikci;
-        }
 
+        Tedarikci = tedarikci;
         return Page();
     }
 
-    public async Task<IActionResult> OnPostAsync(int? tedarikciid)
+    public async Task<IActionResult> OnPostAsync(int? id)
     {
-        if (tedarikciid is null)
+        if (id == null)
         {
             return NotFound();
         }
 
-        var tedarikci = await _context.Tedarikciler.FindAsync(tedarikciid);
+        var tedarikci = await _context.Tedarikciler.FindAsync(id);
+
         if (tedarikci != null)
         {
-            Tedarikci = tedarikci;
-            _context.Tedarikciler.Remove(Tedarikci);
+            _context.Tedarikciler.Remove(tedarikci);
             await _context.SaveChangesAsync();
         }
 
