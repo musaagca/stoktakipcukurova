@@ -1,29 +1,137 @@
 @page
 @model YemekhaneStokTakipV2.Pages.UrunPages.IndexModel
+
 @{
     ViewData["Title"] = "Ürün Listesi";
 }
+
 <div class="d-flex justify-content-between align-items-center mb-4">
-    <div><h2 class="fw-bold text-success">📦 Ürün Yönetimi</h2><small class="text-muted">Sistemde kayıtlı ürünler</small></div>
-    <a asp-page="Create" class="btn btn-success">+ Yeni Ürün Ekle</a>
+
+    <div>
+
+        <h2 class="fw-bold">
+            Ürün Yönetimi
+        </h2>
+
+        <small class="text-muted">
+            Sistemde kayıtlı ürünler
+        </small>
+
+    </div>
+
+    <a asp-page="Create" class="btn btn-success">
+        Yeni Ürün Ekle
+    </a>
+
 </div>
-<form method="get" class="mb-3"><input asp-for="Ara" class="form-control" placeholder="Ürün ara..." /></form>
-<div class="card shadow">
+
+<form method="get" class="mb-4">
+
+    <input asp-for="Ara"
+           class="form-control"
+           placeholder="Ürün ara..." />
+
+</form>
+
+<div class="card">
+
     <div class="card-body p-0">
+
         <table class="table table-hover mb-0">
-            <thead class="table-success"><tr><th>Ürün</th><th>Kategori</th><th>Birim</th><th>Mevcut</th><th>Kritik</th><th>İşlemler</th></tr></thead>
+
+            <thead>
+
+                <tr>
+
+                    <th>Ürün</th>
+                    <th>Kategori</th>
+                    <th>Birim</th>
+                    <th>Mevcut Stok</th>
+                    <th>Kritik Stok</th>
+                    <th width="220">İşlemler</th>
+
+                </tr>
+
+            </thead>
+
             <tbody>
+
                 @foreach (var item in Model.Urun)
                 {
-                    <tr><td><strong>@item.UrunAdi</strong></td><td>@item.Kategori?.KategoriAdi</td><td>@item.Birim</td><td>@if(item.MevcutStok<=item.KritikStok){
-                        <span class="badge bg-danger">@item.MevcutStok</span>
-                    }else
-                    {
 
-                        <span class="badge bg-success">@item.MevcutStok</span>
-                    }
-                </td><td>@item.KritikStok</td><td><a asp-page="./Edit" asp-route-id="@item.UrunId" class="btn btn-warning btn-sm">Düzenle</a> <a asp-page="./Details" asp-route-id="@item.UrunId" class="btn btn-info btn-sm text-white">Detay</a> <a asp-page="./Delete" asp-route-id="@item.UrunId" class="btn btn-danger btn-sm">Sil</a></td></tr>
-            }
-        </tbody>        </table>
+                    bool kritik = item.MevcutStok <= item.KritikStok;
+
+                    <tr class="@(kritik ? "table-danger" : "")">
+
+                        <td>
+                            <strong>@item.UrunAdi</strong>
+                        </td>
+
+                        <td>
+                            @item.Kategori?.KategoriAdi
+                        </td>
+
+                        <td>
+                            @item.Birim
+                        </td>
+
+                        <td>
+
+                            @if (kritik)
+                            {
+                                <span class="badge bg-danger">
+                                    @item.MevcutStok
+                                </span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-success">
+                                    @item.MevcutStok
+                                </span>
+                            }
+
+                        </td>
+
+                        <td>
+                            @item.KritikStok
+                        </td>
+
+                        <td>
+
+                            <a asp-page="./Edit"
+                               asp-route-id="@item.UrunId"
+                               class="btn btn-success btn-sm">
+
+                                Düzenle
+
+                            </a>
+
+                            <a asp-page="./Details"
+                               asp-route-id="@item.UrunId"
+                               class="btn btn-success btn-sm">
+
+                                Detay
+
+                            </a>
+
+                            <a asp-page="./Delete"
+                               asp-route-id="@item.UrunId"
+                               class="btn btn-success btn-sm">
+
+                                Sil
+
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                }
+
+            </tbody>
+
+        </table>
+
     </div>
+
 </div>

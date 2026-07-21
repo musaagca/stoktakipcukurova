@@ -4,39 +4,173 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Çukurova Üniversitesi Yemekhane Stok Takip Sistemi</title>
+
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/YemekhaneStokTakipV2.styles.css" asp-append-version="true" />
 </head>
+
 <body>
-    <div class="bg-dark text-light py-1"><div class="container d-flex justify-content-between"><small>🏛️ Çukurova Üniversitesi • Bilgi İşlem Daire Başkanlığı</small><small id="clock"></small></div></div>
+
+    <div class="top-bar">
+        <div class="container d-flex justify-content-between">
+            <small>
+                <i class="fa-solid fa-building-columns"></i>
+                Çukurova Üniversitesi • Bilgi İşlem Daire Başkanlığı
+            </small>
+
+            <small id="clock"></small>
+        </div>
+    </div>
+
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-success shadow">
+
+        <nav class="navbar navbar-expand-lg shadow">
+
             <div class="container">
-                <a class="navbar-brand d-flex align-items-center" asp-page="/Index"><img src="~/images/cu-logo.png" width="52" height="52" class="me-3" /><div><div class="fw-bold fs-5">Çukurova Üniversitesi</div><small>Yemekhane Stok Takip Sistemi</small></div></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu"><span class="navbar-toggler-icon"></span></button>
+
+                <a class="navbar-brand d-flex align-items-center" asp-page="/Index">
+
+                    <img src="~/images/cu-logo.png"
+                         width="52"
+                         height="52"
+                         class="me-3" />
+
+                    <div>
+                        <div class="fw-bold fs-5">
+                            Çukurova Üniversitesi
+                        </div>
+
+                        <small>
+                            Yemekhane Stok Takip Sistemi
+                        </small>
+                    </div>
+
+                </a>
+
+                <button class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#menu">
+
+                    <span class="navbar-toggler-icon"></span>
+
+                </button>
+
                 <div class="collapse navbar-collapse" id="menu">
+
                     <ul class="navbar-nav ms-auto align-items-lg-center">
-                        <li class="nav-item"><a class="nav-link" asp-page="/Index">🏠 Ana Sayfa</a></li>
-                        <li class="nav-item"><a class="nav-link" asp-page="/UrunPages/Index">📦 Ürünler</a></li>
-                        <li class="nav-item"><a class="nav-link" asp-page="/KategoriPages/Index">🗂️ Kategoriler</a></li>
-                        <li class="nav-item"><a class="nav-link" asp-page="/TedarikciPages/Index">🚚 Tedarikçiler</a></li>
-                        <li class="nav-item"><a class="nav-link" asp-page="/StokGirisPages/Index">📥 Giriş</a></li>
-                        <li class="nav-item"><a class="nav-link" asp-page="/StokCikisPages/Index">📤 Çıkış</a></li>
-                        <li class="nav-item ms-lg-3"><span class="badge bg-light text-success fs-6">👤 Yönetici</span></li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-page="/Index">
+                                <i class="fa-solid fa-house"></i>
+                                Ana Sayfa
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-page="/UrunPages/Index">
+                                <i class="fa-solid fa-box"></i>
+                                Ürünler
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-page="/KategoriPages/Index">
+                                <i class="fa-solid fa-folder"></i>
+                                Kategoriler
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-page="/TedarikciPages/Index">
+                                <i class="fa-solid fa-truck"></i>
+                                Tedarikçiler
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-page="/StokGirisPages/Index">
+                                <i class="fa-solid fa-arrow-down"></i>
+                                Giriş
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-page="/StokCikisPages/Index">
+                                <i class="fa-solid fa-arrow-up"></i>
+                                Çıkış
+                            </a>
+                        </li>
+
+                        <li class="nav-item ms-lg-3">
+                            <span class="admin-badge">
+                                <i class="fa-solid fa-user"></i>
+                                Yönetici
+                            </span>
+                        </li>
+
                     </ul>
+
                 </div>
+
             </div>
+
         </nav>
+
     </header>
-    <main class="container mt-4 mb-5">@RenderBody()</main>
-    <footer class="bg-success text-white mt-5"><div class="container py-4 text-center"><h5>Çukurova Üniversitesi</h5><div>Bilgi İşlem Daire Başkanlığı</div><div>Yemekhane Stok Takip Sistemi</div><hr class="border-light" /><small>© 2026 Tüm Hakları Saklıdır • Sürüm 1.0</small></div></footer>
+
+    <main class="container mt-4 mb-5">
+        @RenderBody()
+    </main>
+
+    <footer class="footer-custom">
+
+        <div class="container text-center">
+
+            <h5>Çukurova Üniversitesi</h5>
+
+            <p class="mb-1">
+                Bilgi İşlem Daire Başkanlığı
+            </p>
+
+            <p class="mb-3">
+                Yemekhane Stok Takip Sistemi
+            </p>
+
+            <hr>
+
+            <small>
+                © 2026 Tüm Hakları Saklıdır • Sürüm 1.0
+            </small>
+
+        </div>
+
+    </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
     <script>
-            function updateClock() { const now = new Date(); document.getElementById("clock").innerHTML = now.toLocaleDateString("tr-TR") + " | " + now.toLocaleTimeString("tr-TR"); }
-            updateClock(); setInterval(updateClock, 1000);
+            function updateClock() {
+                const now = new Date();
+                document.getElementById("clock").innerHTML =
+                    now.toLocaleDateString("tr-TR") +
+                    " | " +
+                    now.toLocaleTimeString("tr-TR");
+            }
+
+            updateClock();
+            setInterval(updateClock, 1000);
     </script>
+
     @await RenderSectionAsync("Scripts", required: false)
-</body></html>
+
+</body>
+</html>

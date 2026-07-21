@@ -5,44 +5,137 @@
     ViewData["Title"] = "Stok Çıkışları";
 }
 
-<h1>📤 Stok Çıkışları</h1>
+<div class="d-flex justify-content-between align-items-center mb-4">
 
-<p>
-    <a asp-page="Create" class="btn btn-success">➕ Yeni Stok Çıkışı</a>
-</p>
+    <div>
 
-<table class="table table-bordered table-striped">
-    <thead class="table-dark">
-        <tr>
-            <th>Ürün</th>
-            <th>Miktar</th>
-            <th>Tarih</th>
-            <th>Açıklama</th>
-            <th>İşlemler</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.StokCikis)
-        {
-            <tr>
-                <td>@item.Urun?.UrunAdi</td>
-                <td>@item.Miktar</td>
-                <td>@item.Tarih.ToString("dd.MM.yyyy HH:mm")</td>
-                <td>@item.Aciklama</td>
-                <td>
-                    <a asp-page="./Edit" asp-route-id="@item.StokCikisId" class="btn btn-warning btn-sm">
-                        Düzenle
-                    </a>
+        <h2 class="fw-bold">
+            Stok Çıkışları
+        </h2>
 
-                    <a asp-page="./Details" asp-route-id="@item.StokCikisId" class="btn btn-info btn-sm">
-                        Detay
-                    </a>
+        <small class="text-muted">
+            Sistemde kayıtlı stok çıkış hareketleri
+        </small>
 
-                    <a asp-page="./Delete" asp-route-id="@item.StokCikisId" class="btn btn-danger btn-sm">
-                        Sil
-                    </a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+    </div>
+
+    <a asp-page="Create" class="btn btn-success">
+        Yeni Stok Çıkışı
+    </a>
+
+</div>
+
+<div class="card">
+
+    <div class="card-body p-0">
+
+        <table class="table table-hover mb-0 align-middle">
+
+            <thead>
+
+                <tr>
+
+                    <th>Ürün</th>
+                    <th>Miktar</th>
+                    <th>Tarih</th>
+                    <th>Açıklama</th>
+                    <th width="220">İşlemler</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                @if (Model.StokCikis.Any())
+                {
+
+                    @foreach (var item in Model.StokCikis)
+                    {
+
+                        <tr>
+
+                            <td>
+                                <strong>@item.Urun?.UrunAdi</strong>
+                            </td>
+
+                            <td>
+
+                                @if (item.Miktar <= 20)
+                                {
+                                    <span class="badge bg-danger">
+                                        @item.Miktar
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-success">
+                                        @item.Miktar
+                                    </span>
+                                }
+
+                            </td>
+
+                            <td>
+                                @item.Tarih.ToString("dd.MM.yyyy HH:mm")
+                            </td>
+
+                            <td>
+                                @item.Aciklama
+                            </td>
+
+                            <td>
+
+                                <a asp-page="./Edit"
+                                   asp-route-id="@item.StokCikisId"
+                                   class="btn btn-success btn-sm">
+
+                                    Düzenle
+
+                                </a>
+
+                                <a asp-page="./Details"
+                                   asp-route-id="@item.StokCikisId"
+                                   class="btn btn-success btn-sm">
+
+                                    Detay
+
+                                </a>
+
+                                <a asp-page="./Delete"
+                                   asp-route-id="@item.StokCikisId"
+                                   class="btn btn-success btn-sm">
+
+                                    Sil
+
+                                </a>
+
+                            </td>
+
+                        </tr>
+
+                    }
+
+                }
+                else
+                {
+
+                    <tr>
+
+                        <td colspan="5" class="text-center py-4">
+
+                            Henüz stok çıkışı bulunmamaktadır.
+
+                        </td>
+
+                    </tr>
+
+                }
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>

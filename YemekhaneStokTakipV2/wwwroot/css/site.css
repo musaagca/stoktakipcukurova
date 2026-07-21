@@ -1,3 +1,12 @@
+:root {
+    --primary: #0B6B43;
+    --primary-dark: #085235;
+    --primary-light: #EDF7F1;
+    --text: #2E2E2E;
+    --white: #ffffff;
+    --shadow: 0 10px 25px rgba(0,0,0,.08);
+}
+
 html {
     font-size: 16px;
     position: relative;
@@ -8,72 +17,135 @@ html {
 body {
     margin-bottom: 120px;
     font-family: 'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
-    background: #f4f7f9;
+    background: #f7f8f9;
     background-image: url('/images/campus.png');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
+    color: var(--text);
 }
 
     body::before {
         content: "";
         position: fixed;
         inset: 0;
-        background: rgba(255,255,255,.93);
+        background: rgba(255,255,255,.94);
         z-index: -1;
     }
 
+/* ÜST ŞERİT */
+
+.top-bar {
+    background: #f5f5f5;
+    border-bottom: 1px solid #ddd;
+    color: #444;
+    padding: 6px 0;
+}
+
+/* NAVBAR */
+
 .navbar {
-    background: linear-gradient(90deg,#0f6b3d,#198754);
-    box-shadow: 0 4px 18px rgba(0,0,0,.18);
+    background: var(--primary) !important;
+    box-shadow: 0 3px 15px rgba(0,0,0,.12);
 }
 
 .navbar-brand {
-    font-weight: 700;
+    color: #fff !important;
+    text-decoration: none;
 }
+
+    .navbar-brand:hover {
+        color: #fff !important;
+    }
+
+    .navbar-brand .fw-bold {
+        color: #fff !important;
+    }
+
+    .navbar-brand small {
+        color: rgba(255,255,255,.85) !important;
+    }
 
 .nav-link {
     color: #fff !important;
     font-weight: 600;
-    border-radius: 10px;
-    padding: .6rem .9rem !important;
+    margin-left: 8px;
     transition: .25s;
 }
 
     .nav-link:hover {
-        background: rgba(255,255,255,.18);
-        color: #fff !important;
+        color: #d6f5e5 !important;
     }
+
+    .nav-link i {
+        margin-right: 6px;
+    }
+
+/* Yönetici */
+
+.admin-badge {
+    background: #fff;
+    color: var(--primary);
+    padding: 8px 16px;
+    border-radius: 30px;
+    font-weight: 600;
+}
+
+/* BAŞLIKLAR */
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--primary);
+    font-weight: 700;
+}
+
+/* KARTLAR */
 
 .card {
     border: none;
     border-radius: 18px;
-    background: #fff;
-    box-shadow: 0 10px 28px rgba(0,0,0,.10);
-    transition: .25s;
+    box-shadow: var(--shadow);
+    transition: .30s;
 }
 
     .card:hover {
         transform: translateY(-6px);
-        box-shadow: 0 18px 34px rgba(0,0,0,.18);
+        box-shadow: 0 18px 35px rgba(0,0,0,.15);
     }
 
 .card-header {
+    background: #fff;
     border: none;
-    font-size: 1.05rem;
+    color: var(--primary);
     font-weight: 700;
 }
 
-.btn {
+/* BUTONLAR */
+
+.btn-primary,
+.btn-success,
+.btn-danger,
+.btn-warning,
+.btn-info,
+.btn-secondary {
+    background: var(--primary) !important;
+    border-color: var(--primary) !important;
+    color: #fff !important;
     border-radius: 10px;
     font-weight: 600;
-    transition: .25s;
 }
 
-    .btn:hover {
-        transform: translateY(-2px);
+    .btn-primary:hover,
+    .btn-success:hover,
+    .btn-danger:hover,
+    .btn-warning:hover,
+    .btn-info:hover,
+    .btn-secondary:hover {
+        background: var(--primary-dark) !important;
+        border-color: var(--primary-dark) !important;
     }
+
+/* TABLOLAR */
 
 .table {
     background: #fff;
@@ -82,13 +154,15 @@ body {
 }
 
     .table thead {
-        background: #198754;
+        background: var(--primary);
         color: #fff;
     }
 
     .table tbody tr:hover {
-        background: #eefaf3;
+        background: var(--primary-light);
     }
+
+/* INPUTLAR */
 
 .form-control,
 .form-select {
@@ -97,28 +171,48 @@ body {
 
     .form-control:focus,
     .form-select:focus {
-        border-color: #198754;
-        box-shadow: 0 0 0 .18rem rgba(25,135,84,.18);
+        border-color: var(--primary);
+        box-shadow: 0 0 0 .18rem rgba(11,107,67,.15);
     }
+
+/* ALERT */
 
 .alert {
     border: none;
     border-radius: 12px;
 }
 
-footer {
-    background: #157347 !important;
-    color: #fff;
-    box-shadow: 0 -4px 16px rgba(0,0,0,.15);
+.alert-danger {
+    background: #F5FBF7;
+    color: var(--primary);
+    border-left: 5px solid var(--primary);
 }
 
-.badge {
-    border-radius: 20px;
-    padding: .55rem .8rem;
+/* FOOTER */
+
+.footer-custom {
+    background: var(--primary);
+    color: #fff;
+    padding: 35px 0;
+    margin-top: 60px;
 }
+
+    .footer-custom hr {
+        opacity: .2;
+        border-color: #fff;
+    }
+
+/* BADGE */
+
+.badge {
+    border-radius: 25px;
+}
+
+/* FOCUS */
 
 .btn:focus,
 .form-control:focus,
 .form-select:focus {
     outline: none;
+    box-shadow: none;
 }

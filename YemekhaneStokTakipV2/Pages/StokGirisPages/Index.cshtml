@@ -5,69 +5,150 @@
     ViewData["Title"] = "Stok Girişleri";
 }
 
-<h2 class="mb-3">📥 Stok Girişleri</h2>
+<div class="d-flex justify-content-between align-items-center mb-4">
 
-<p>
+    <div>
+
+        <h2 class="fw-bold">
+            Stok Girişleri
+        </h2>
+
+        <small class="text-muted">
+            Sisteme eklenen stok giriş kayıtları
+        </small>
+
+    </div>
+
     <a asp-page="Create" class="btn btn-success">
-        ➕ Yeni Stok Girişi
+        Yeni Stok Girişi
     </a>
-</p>
 
-<table class="table table-bordered table-hover table-striped align-middle">
-    <thead class="table-success">
-        <tr>
-            <th>Ürün</th>
-            <th>Tedarikçi</th>
-            <th>Miktar</th>
-            <th>Tarih</th>
-            <th>Açıklama</th>
-            <th style="width:250px;">İşlemler</th>
-        </tr>
-    </thead>
+</div>
 
-    <tbody>
-        @foreach (var item in Model.StokGiris)
-        {
-            <tr>
-                <td>@item.Urun?.UrunAdi</td>
+<div class="card">
 
-                <td>@item.Tedarikci?.FirmaAdi</td>
+    <div class="card-body p-0">
 
-                <td>
-                    @if (item.Miktar <= 20)
+        <table class="table table-hover mb-0 align-middle">
+
+            <thead>
+
+                <tr>
+
+                    <th>Ürün</th>
+                    <th>Tedarikçi</th>
+                    <th>Miktar</th>
+                    <th>Tarih</th>
+                    <th>Açıklama</th>
+                    <th width="220">İşlemler</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                @if (Model.StokGiris.Any())
+                {
+
+                    @foreach (var item in Model.StokGiris)
                     {
-                        <span class="badge bg-danger fs-6">@item.Miktar</span>
+
+                        <tr>
+
+                            <td>
+
+                                <strong>@item.Urun?.UrunAdi</strong>
+
+                            </td>
+
+                            <td>
+
+                                @item.Tedarikci?.FirmaAdi
+
+                            </td>
+
+                            <td>
+
+                                @if (item.Miktar <= 20)
+                                {
+                                    <span class="badge bg-danger">
+                                        @item.Miktar
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-success">
+                                        @item.Miktar
+                                    </span>
+                                }
+
+                            </td>
+
+                            <td>
+
+                                @item.Tarih.ToString("dd.MM.yyyy HH:mm")
+
+                            </td>
+
+                            <td>
+
+                                @item.Aciklama
+
+                            </td>
+
+                            <td>
+
+                                <a asp-page="./Edit"
+                                   asp-route-id="@item.StokGirisId"
+                                   class="btn btn-success btn-sm">
+
+                                    Düzenle
+
+                                </a>
+
+                                <a asp-page="./Details"
+                                   asp-route-id="@item.StokGirisId"
+                                   class="btn btn-success btn-sm">
+
+                                    Detay
+
+                                </a>
+
+                                <a asp-page="./Delete"
+                                   asp-route-id="@item.StokGirisId"
+                                   class="btn btn-success btn-sm">
+
+                                    Sil
+
+                                </a>
+
+                            </td>
+
+                        </tr>
+
                     }
-                    else
-                    {
-                        <span class="badge bg-success fs-6">@item.Miktar</span>
-                    }
-                </td>
 
-                <td>@item.Tarih.ToString("dd.MM.yyyy HH:mm")</td>
+                }
+                else
+                {
 
-                <td>@item.Aciklama</td>
+                    <tr>
 
-                <td>
-                    <a asp-page="./Edit"
-                       asp-route-id="@item.StokGirisId"
-                       class="btn btn-warning btn-sm">
-                        ✏️ Düzenle
-                    </a>
+                        <td colspan="6" class="text-center py-4">
 
-                    <a asp-page="./Details"
-                       asp-route-id="@item.StokGirisId"
-                       class="btn btn-info btn-sm text-white">
-                        👁️ Detay
-                    </a>
+                            Henüz stok girişi bulunmamaktadır.
 
-                    <a asp-page="./Delete"
-                       asp-route-id="@item.StokGirisId"
-                       class="btn btn-danger btn-sm">
-                        🗑️ Sil
-                    </a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+                        </td>
+
+                    </tr>
+
+                }
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>

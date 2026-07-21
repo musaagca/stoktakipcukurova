@@ -6,173 +6,353 @@
 }
 
 <div class="text-center mb-5">
-    <h1 class="display-4 fw-bold text-success">🍽️ Yemekhane Stok Takip Sistemi</h1>
-    <p class="lead">Yemekhane stok işlemlerini kolayca yönetin.</p>
+
+    <h1 class="display-4 fw-bold">
+        Yemekhane Stok Takip Sistemi
+    </h1>
+
+    <p class="lead text-muted">
+        Yemekhane stok işlemlerini kolayca yönetin.
+    </p>
+
 </div>
 
 <div class="row g-4">
+
     <div class="col-md-4">
-        <div class="card shadow text-center">
+
+        <div class="card text-center h-100">
+
             <div class="card-body">
-                <h3>📦 Ürünler</h3>
-                <h2 class="text-success">@Model.ToplamUrun</h2>
-                <p>Toplam ürün sayısı</p>
-                <a asp-page="/UrunPages/Index" class="btn btn-success">Ürünlere Git</a>
+
+                <h4>Ürünler</h4>
+
+                <h2 class="fw-bold">@Model.ToplamUrun</h2>
+
+                <p class="text-muted">
+                    Toplam ürün sayısı
+                </p>
+
+                <a asp-page="/UrunPages/Index" class="btn btn-success">
+                    Ürünlere Git
+                </a>
+
             </div>
+
         </div>
+
     </div>
 
     <div class="col-md-4">
-        <div class="card shadow text-center">
+
+        <div class="card text-center h-100">
+
             <div class="card-body">
-                <h3>🗂️ Kategoriler</h3>
-                <h2 class="text-primary">@Model.ToplamKategori</h2>
-                <p>Toplam kategori</p>
-                <a asp-page="/KategoriPages/Index" class="btn btn-primary">Kategorilere Git</a>
+
+                <h4>Kategoriler</h4>
+
+                <h2 class="fw-bold">@Model.ToplamKategori</h2>
+
+                <p class="text-muted">
+                    Toplam kategori
+                </p>
+
+                <a asp-page="/KategoriPages/Index" class="btn btn-success">
+                    Kategorilere Git
+                </a>
+
             </div>
+
         </div>
+
     </div>
 
     <div class="col-md-4">
-        <div class="card shadow text-center">
+
+        <div class="card text-center h-100">
+
             <div class="card-body">
-                <h3>🚚 Tedarikçiler</h3>
-                <h2 class="text-warning">@Model.ToplamTedarikci</h2>
-                <p>Toplam tedarikçi</p>
-                <a asp-page="/TedarikciPages/Index" class="btn btn-warning">Tedarikçilere Git</a>
+
+                <h4>Tedarikçiler</h4>
+
+                <h2 class="fw-bold">@Model.ToplamTedarikci</h2>
+
+                <p class="text-muted">
+                    Toplam tedarikçi
+                </p>
+
+                <a asp-page="/TedarikciPages/Index" class="btn btn-success">
+                    Tedarikçilere Git
+                </a>
+
             </div>
+
         </div>
+
     </div>
+
 </div>
 
-<br />
+<div class="row g-4 mt-2">
 
-<div class="row g-4">
     <div class="col-md-6">
-        <div class="card shadow text-center">
+
+        <div class="card text-center h-100">
+
             <div class="card-body">
-                <h3>📥 Stok Girişi</h3>
-                <h2 class="text-info">@Model.ToplamStokGiris</h2>
-                <p>Toplam stok girişi</p>
-                <a asp-page="/StokGirisPages/Index" class="btn btn-info">Stok Girişi</a>
+
+                <h4>Stok Girişi</h4>
+
+                <h2 class="fw-bold">@Model.ToplamStokGiris</h2>
+
+                <p class="text-muted">
+                    Toplam stok girişi
+                </p>
+
+                <a asp-page="/StokGirisPages/Index" class="btn btn-success">
+                    Stok Girişi
+                </a>
+
             </div>
+
         </div>
+
     </div>
 
     <div class="col-md-6">
-        <div class="card shadow text-center">
+
+        <div class="card text-center h-100">
+
             <div class="card-body">
-                <h3>📤 Stok Çıkışı</h3>
-                <h2 class="text-danger">@Model.ToplamStokCikis</h2>
-                <p>Toplam stok çıkışı</p>
-                <a asp-page="/StokCikisPages/Index" class="btn btn-danger">Stok Çıkışı</a>
+
+                <h4>Stok Çıkışı</h4>
+
+                <h2 class="fw-bold">@Model.ToplamStokCikis</h2>
+
+                <p class="text-muted">
+                    Toplam stok çıkışı
+                </p>
+
+                <a asp-page="/StokCikisPages/Index" class="btn btn-success">
+                    Stok Çıkışı
+                </a>
+
             </div>
+
         </div>
+
     </div>
+
 </div>
 
 <hr class="my-5" />
 
-<div class="card shadow mb-5">
-    <div class="card-header bg-danger text-white">
-        <h4 class="mb-0">⚠ Kritik Stoktaki Ürünler</h4>
+<div class="card mb-5">
+
+    <div class="card-header">
+
+        <h4 class="mb-0">
+            Kritik Stoktaki Ürünler
+        </h4>
+
     </div>
+
     <div class="card-body">
+
         @if (Model.KritikUrunler.Any())
         {
-            <table class="table table-striped table-hover">
+
+            <table class="table table-hover">
+
                 <thead>
+
                     <tr>
+
                         <th>Ürün</th>
                         <th>Kategori</th>
                         <th>Mevcut</th>
                         <th>Kritik</th>
+
                     </tr>
+
                 </thead>
+
                 <tbody>
+
                     @foreach (var urun in Model.KritikUrunler)
                     {
-                        <tr class="table-danger">
+
+                        <tr>
+
                             <td>@urun.UrunAdi</td>
                             <td>@urun.Kategori?.KategoriAdi</td>
                             <td>@urun.MevcutStok</td>
                             <td>@urun.KritikStok</td>
+
                         </tr>
+
                     }
+
                 </tbody>
+
             </table>
+
         }
         else
         {
+
             <div class="alert alert-success mb-0">
-                🎉 Kritik stokta ürün bulunmamaktadır.
+
+                Kritik stokta ürün bulunmamaktadır.
+
             </div>
+
         }
+
     </div>
+
 </div>
 
 <div class="row">
+
     <div class="col-lg-6 mb-4">
-        <div class="card shadow h-100">
-            <div class="card-header bg-success text-white">
-                <h4 class="mb-0">📥 Son Stok Girişleri</h4>
+
+        <div class="card h-100">
+
+            <div class="card-header">
+
+                <h4 class="mb-0">
+
+                    Son Stok Girişleri
+
+                </h4>
+
             </div>
+
             <div class="card-body">
+
                 @if (Model.SonStokGirisleri.Any())
                 {
+
                     <table class="table table-hover">
+
                         <thead>
-                            <tr><th>Ürün</th><th>Miktar</th><th>Tarih</th></tr>
+
+                            <tr>
+
+                                <th>Ürün</th>
+                                <th>Miktar</th>
+                                <th>Tarih</th>
+
+                            </tr>
+
                         </thead>
+
                         <tbody>
+
                             @foreach (var item in Model.SonStokGirisleri)
                             {
+
                                 <tr>
+
                                     <td>@item.Urun?.UrunAdi</td>
                                     <td>@item.Miktar</td>
                                     <td>@item.Tarih.ToString("dd.MM.yyyy HH:mm")</td>
+
                                 </tr>
+
                             }
+
                         </tbody>
+
                     </table>
+
                 }
                 else
                 {
-                    <div class="alert alert-secondary mb-0">Henüz stok girişi bulunmuyor.</div>
+
+                    <div class="alert alert-secondary mb-0">
+
+                        Henüz stok girişi bulunmuyor.
+
+                    </div>
+
                 }
+
             </div>
+
         </div>
+
     </div>
 
     <div class="col-lg-6 mb-4">
-        <div class="card shadow h-100">
-            <div class="card-header bg-primary text-white">
-                <h4 class="mb-0">📤 Son Stok Çıkışları</h4>
+
+        <div class="card h-100">
+
+            <div class="card-header">
+
+                <h4 class="mb-0">
+
+                    Son Stok Çıkışları
+
+                </h4>
+
             </div>
+
             <div class="card-body">
+
                 @if (Model.SonStokCikislari.Any())
                 {
+
                     <table class="table table-hover">
+
                         <thead>
-                            <tr><th>Ürün</th><th>Miktar</th><th>Tarih</th></tr>
+
+                            <tr>
+
+                                <th>Ürün</th>
+                                <th>Miktar</th>
+                                <th>Tarih</th>
+
+                            </tr>
+
                         </thead>
+
                         <tbody>
+
                             @foreach (var item in Model.SonStokCikislari)
                             {
+
                                 <tr>
+
                                     <td>@item.Urun?.UrunAdi</td>
                                     <td>@item.Miktar</td>
                                     <td>@item.Tarih.ToString("dd.MM.yyyy HH:mm")</td>
+
                                 </tr>
+
                             }
+
                         </tbody>
+
                     </table>
+
                 }
                 else
                 {
-                    <div class="alert alert-secondary mb-0">Henüz stok çıkışı bulunmuyor.</div>
+
+                    <div class="alert alert-secondary mb-0">
+
+                        Henüz stok çıkışı bulunmuyor.
+
+                    </div>
+
                 }
+
             </div>
+
         </div>
+
     </div>
+
 </div>
