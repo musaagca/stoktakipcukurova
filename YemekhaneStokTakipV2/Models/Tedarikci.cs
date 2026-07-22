@@ -8,7 +8,7 @@ namespace YemekhaneStokTakipV2.Models
         public int TedarikciId { get; set; }
 
         [Required]
-        public string FirmaAdi { get; set; }
+        public string FirmaAdi { get; set; } = string.Empty;
 
         public string? Telefon { get; set; }
 

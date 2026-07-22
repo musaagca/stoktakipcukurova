@@ -9,12 +9,13 @@ namespace YemekhaneStokTakipV2.Models
         public int UrunId { get; set; }
 
         [Required]
-        public string UrunAdi { get; set; }
+        public string UrunAdi { get; set; } = string.Empty;
 
         [ForeignKey("Kategori")]
         public int KategoriId { get; set; }
 
-        public string Birim { get; set; }
+        [Required]
+        public string Birim { get; set; } = string.Empty;
 
         public decimal MevcutStok { get; set; }
 
