@@ -23,7 +23,7 @@ builder.Services
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
 
-// Cookie Ayarları
+// Cookie
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.LoginPath = "/Account/Login";
@@ -46,10 +46,16 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-// Bunların sırası önemli
 app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();
+
+// İlk yönetici hesabını oluştur
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    await SeedData.InitializeAsync(services);
+}
 
 app.Run();
