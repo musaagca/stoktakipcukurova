@@ -27,11 +27,22 @@ builder.Services
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.LoginPath = "/Account/Login";
-    options.AccessDeniedPath = "/Account/AccessDenied";
+    options.AccessDeniedPath = "/Account/Login";
     options.LogoutPath = "/Account/Logout";
 });
 
-builder.Services.AddRazorPages();
+builder.Services.AddRazorPages(options =>
+{
+    options.Conventions.AuthorizeFolder("/KategoriPages");
+    options.Conventions.AuthorizeFolder("/UrunPages");
+    options.Conventions.AuthorizeFolder("/TedarikciPages");
+    options.Conventions.AuthorizeFolder("/StokGirisPages");
+    options.Conventions.AuthorizeFolder("/StokCikisPages");
+
+    options.Conventions.AuthorizePage("/Index");
+
+    options.Conventions.AllowAnonymousToFolder("/Account");
+});
 
 var app = builder.Build();
 

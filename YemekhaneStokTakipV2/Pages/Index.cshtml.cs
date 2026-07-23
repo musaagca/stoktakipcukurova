@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using YemekhaneStokTakipV2.Data;
@@ -5,6 +6,7 @@ using YemekhaneStokTakipV2.Models;
 
 namespace YemekhaneStokTakipV2.Pages
 {
+    [Authorize]
     public class IndexModel : PageModel
     {
         private readonly ApplicationDbContext _context;
@@ -20,10 +22,7 @@ namespace YemekhaneStokTakipV2.Pages
         public int ToplamStokGiris { get; set; }
         public int ToplamStokCikis { get; set; }
 
-        // Kritik stoktaki ürünler
         public IList<Urun> KritikUrunler { get; set; } = new List<Urun>();
-
-        // Son işlemler
         public IList<StokGiris> SonStokGirisleri { get; set; } = new List<StokGiris>();
         public IList<StokCikis> SonStokCikislari { get; set; } = new List<StokCikis>();
 
