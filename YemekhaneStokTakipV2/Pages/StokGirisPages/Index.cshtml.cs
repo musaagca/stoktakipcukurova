@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using YemekhaneStokTakipV2.Data;
@@ -5,6 +6,7 @@ using YemekhaneStokTakipV2.Models;
 
 namespace YemekhaneStokTakipV2.Pages.StokGirisPages;
 
+[Authorize(Roles = "Yonetici,Personel")]
 public class IndexModel : PageModel
 {
     private readonly ApplicationDbContext _context;

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -7,6 +8,7 @@ using YemekhaneStokTakipV2.Data;
 
 namespace YemekhaneStokTakipV2.Pages.UrunPages;
 
+[Authorize(Roles = "Yonetici,Personel")]
 public class CreateModel : PageModel
 {
     private readonly ApplicationDbContext _context;

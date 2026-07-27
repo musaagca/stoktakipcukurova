@@ -7,7 +7,7 @@ using YemekhaneStokTakipV2.Models;
 
 namespace YemekhaneStokTakipV2.Pages.KategoriPages;
 
-[Authorize]
+[Authorize(Roles = "Yonetici")]
 public class IndexModel : PageModel
 {
     private readonly ApplicationDbContext _context;

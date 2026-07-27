@@ -23,12 +23,19 @@ builder.Services
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
 
-// Cookie
 builder.Services.ConfigureApplicationCookie(options =>
 {
+    options.Cookie.Name = ".AspNetCore.Identity.Application";
+
     options.LoginPath = "/Account/Login";
-    options.AccessDeniedPath = "/Account/Login";
     options.LogoutPath = "/Account/Logout";
+    options.AccessDeniedPath = "/Account/Login";
+
+    options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+    options.SlidingExpiration = true;
+
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
 });
 
 builder.Services.AddRazorPages(options =>

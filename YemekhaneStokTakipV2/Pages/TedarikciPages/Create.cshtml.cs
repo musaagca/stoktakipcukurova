@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -6,6 +7,7 @@ using YemekhaneStokTakipV2.Data;
 
 namespace YemekhaneStokTakipV2.Pages.TedarikciPages;
 
+[Authorize(Roles = "Yonetici")]
 public class CreateModel : PageModel
 {
     private readonly ApplicationDbContext _context;
@@ -23,7 +25,6 @@ public class CreateModel : PageModel
     [BindProperty]
     public Tedarikci Tedarikci { get; set; } = default!;
 
-    // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD.
     public async Task<IActionResult> OnPostAsync()
     {
         if (!ModelState.IsValid)

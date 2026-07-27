@@ -1,10 +1,13 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using YemekhaneStokTakipV2.Models;
 using YemekhaneStokTakipV2.Data;
-using Microsoft.AspNetCore.Mvc.Rendering;
+
 namespace YemekhaneStokTakipV2.Pages.StokGirisPages;
 
+[Authorize(Roles = "Yonetici,Personel")]
 public class CreateModel : PageModel
 {
     private readonly ApplicationDbContext _context;
@@ -21,8 +24,10 @@ public class CreateModel : PageModel
 
         return Page();
     }
+
     public SelectList UrunListesi { get; set; } = default!;
     public SelectList TedarikciListesi { get; set; } = default!;
+
     [BindProperty]
     public StokGiris StokGiris { get; set; } = default!;
 

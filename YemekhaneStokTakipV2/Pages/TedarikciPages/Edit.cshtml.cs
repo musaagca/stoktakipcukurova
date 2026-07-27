@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -6,6 +7,7 @@ using YemekhaneStokTakipV2.Data;
 
 namespace YemekhaneStokTakipV2.Pages.TedarikciPages;
 
+[Authorize(Roles = "Yonetici")]
 public class EditModel : PageModel
 {
     private readonly ApplicationDbContext _context;
@@ -26,16 +28,17 @@ public class EditModel : PageModel
         }
 
         var tedarikci = await _context.Tedarikciler.FirstOrDefaultAsync(m => m.TedarikciId == tedarikciid);
+
         if (tedarikci is null)
         {
             return NotFound();
         }
+
         Tedarikci = tedarikci;
+
         return Page();
     }
 
-    // To protect from overposting attacks, enable the specific properties you want to bind to.
-    // For more details, see https://aka.ms/RazorPagesCRUD.
     public async Task<IActionResult> OnPostAsync()
     {
         if (!ModelState.IsValid)
@@ -55,10 +58,8 @@ public class EditModel : PageModel
             {
                 return NotFound();
             }
-            else
-            {
-                throw;
-            }
+
+            throw;
         }
 
         return RedirectToPage("./Index");

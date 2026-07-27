@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -6,6 +7,7 @@ using YemekhaneStokTakipV2.Models;
 
 namespace YemekhaneStokTakipV2.Pages.UrunPages;
 
+[Authorize(Roles = "Yonetici,Personel")]
 public class DeleteModel : PageModel
 {
     private readonly ApplicationDbContext _context;

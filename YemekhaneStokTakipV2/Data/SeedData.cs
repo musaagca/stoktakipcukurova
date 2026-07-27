@@ -10,26 +10,54 @@ namespace YemekhaneStokTakipV2.Data
             var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
             var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
 
+            // Roller
             if (!await roleManager.RoleExistsAsync("Yonetici"))
             {
                 await roleManager.CreateAsync(new IdentityRole("Yonetici"));
             }
 
-            var user = await userManager.FindByNameAsync("admin");
-
-            if (user == null)
+            if (!await roleManager.RoleExistsAsync("Personel"))
             {
-                user = new ApplicationUser
+                await roleManager.CreateAsync(new IdentityRole("Personel"));
+            }
+
+            // Admin hesabı
+            var admin = await userManager.FindByNameAsync("admin");
+
+            if (admin == null)
+            {
+                admin = new ApplicationUser
                 {
                     UserName = "admin",
-                    Email = "admin@stoktakip.com"
+                    Email = "admin@stoktakip.com",
+                    EmailConfirmed = true
                 };
 
-                var result = await userManager.CreateAsync(user, "1234");
+                var result = await userManager.CreateAsync(admin, "1234");
 
                 if (result.Succeeded)
                 {
-                    await userManager.AddToRoleAsync(user, "Yonetici");
+                    await userManager.AddToRoleAsync(admin, "Yonetici");
+                }
+            }
+
+            // Personel hesabı
+            var personel = await userManager.FindByNameAsync("personel");
+
+            if (personel == null)
+            {
+                personel = new ApplicationUser
+                {
+                    UserName = "personel",
+                    Email = "personel@stoktakip.com",
+                    EmailConfirmed = true
+                };
+
+                var result = await userManager.CreateAsync(personel, "1234");
+
+                if (result.Succeeded)
+                {
+                    await userManager.AddToRoleAsync(personel, "Personel");
                 }
             }
         }

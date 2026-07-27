@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -7,6 +8,7 @@ using YemekhaneStokTakipV2.Models;
 
 namespace YemekhaneStokTakipV2.Pages.StokGirisPages;
 
+[Authorize(Roles = "Yonetici,Personel")]
 public class EditModel : PageModel
 {
     private readonly ApplicationDbContext _context;

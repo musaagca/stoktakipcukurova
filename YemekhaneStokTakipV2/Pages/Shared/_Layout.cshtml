@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@using YemekhaneStokTakipV2.Models
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="utf-8" />
@@ -16,7 +20,7 @@
 </head>
 
 <body>
-
+    
     <div class="top-bar">
         <div class="container d-flex justify-content-between">
             <small>
@@ -66,54 +70,76 @@
 
                     <ul class="navbar-nav ms-auto align-items-lg-center">
 
-                        <li class="nav-item">
-                            <a class="nav-link" asp-page="/Index">
-                                <i class="fa-solid fa-house"></i>
-                                Ana Sayfa
-                            </a>
-                        </li>
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-page="/Index">
+                                    <i class="fa-solid fa-house"></i>
+                                    Ana Sayfa
+                                </a>
+                            </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" asp-page="/UrunPages/Index">
-                                <i class="fa-solid fa-box"></i>
-                                Ürünler
-                            </a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-page="/UrunPages/Index">
+                                    <i class="fa-solid fa-box"></i>
+                                    Ürünler
+                                </a>
+                            </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" asp-page="/KategoriPages/Index">
-                                <i class="fa-solid fa-folder"></i>
-                                Kategoriler
-                            </a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-page="/KategoriPages/Index">
+                                    <i class="fa-solid fa-folder"></i>
+                                    Kategoriler
+                                </a>
+                            </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" asp-page="/TedarikciPages/Index">
-                                <i class="fa-solid fa-truck"></i>
-                                Tedarikçiler
-                            </a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-page="/TedarikciPages/Index">
+                                    <i class="fa-solid fa-truck"></i>
+                                    Tedarikçiler
+                                </a>
+                            </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" asp-page="/StokGirisPages/Index">
-                                <i class="fa-solid fa-arrow-down"></i>
-                                Giriş
-                            </a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-page="/StokGirisPages/Index">
+                                    <i class="fa-solid fa-arrow-down"></i>
+                                    Giriş
+                                </a>
+                            </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" asp-page="/StokCikisPages/Index">
-                                <i class="fa-solid fa-arrow-up"></i>
-                                Çıkış
-                            </a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-page="/StokCikisPages/Index">
+                                    <i class="fa-solid fa-arrow-up"></i>
+                                    Çıkış
+                                </a>
+                            </li>
 
-                        <li class="nav-item ms-lg-3">
-                            <span class="admin-badge">
-                                <i class="fa-solid fa-user"></i>
-                                Yönetici
-                            </span>
-                        </li>
+                            <li class="nav-item ms-lg-3">
+                                <span class="admin-badge">
+                                    <i class="fa-solid fa-user"></i>
+                                    @User.Identity?.Name
+                                </span>
+                            </li>
+
+                            <li class="nav-item ms-2">
+                                <form method="post" asp-page="/Account/Logout">
+                                    <button type="submit" class="btn btn-danger btn-sm">
+                                        <i class="fa-solid fa-right-from-bracket"></i>
+                                        Çıkış Yap
+                                    </button>
+                                </form>
+                            </li>
+                        }
+
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="btn btn-success" asp-page="/Account/Login">
+                                    <i class="fa-solid fa-right-to-bracket"></i>
+                                    Giriş Yap
+                                </a>
+                            </li>
+                        }
 
                     </ul>
 

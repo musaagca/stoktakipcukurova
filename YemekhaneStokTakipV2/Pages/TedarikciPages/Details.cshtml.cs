@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -6,9 +7,11 @@ using YemekhaneStokTakipV2.Data;
 
 namespace YemekhaneStokTakipV2.Pages.TedarikciPages;
 
+[Authorize(Roles = "Yonetici")]
 public class DetailsModel : PageModel
 {
     private readonly ApplicationDbContext _context;
+
     public DetailsModel(ApplicationDbContext context)
     {
         _context = context;
@@ -23,15 +26,15 @@ public class DetailsModel : PageModel
             return NotFound();
         }
 
-        var tedarikci = await _context.Tedarikciler.FirstOrDefaultAsync(m => m.TedarikciId == tedarikciid);
+        var tedarikci = await _context.Tedarikciler
+            .FirstOrDefaultAsync(m => m.TedarikciId == tedarikciid);
+
         if (tedarikci is null)
         {
             return NotFound();
         }
-        else
-        {
-            Tedarikci = tedarikci;
-        }
+
+        Tedarikci = tedarikci;
 
         return Page();
     }
